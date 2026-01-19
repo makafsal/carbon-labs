@@ -143,8 +143,12 @@ export class SideNavItem extends LitElement {
           `
         : this.isOnClickAvailable || this.link?.onClick
         ? html` <cds-custom-side-nav-link
-            class="${AUTOMATION_NAMESPACE_PREFIX}--side-nav__link"
+            class="${cx(`${AUTOMATION_NAMESPACE_PREFIX}--side-nav__link`, {
+              [`${AUTOMATION_NAMESPACE_PREFIX}--side-nav__link--current`]:
+                this.isActive,
+            })}"
             role="link"
+            ?active="${this.isActive}"
             href="${this.link?.href}"
             @click="${(e: Event) =>
               this.handleSideNavLinkClick(e, this.link?.label)}"
@@ -155,8 +159,12 @@ export class SideNavItem extends LitElement {
           </cds-custom-side-nav-link>`
         : html`
             <cds-custom-side-nav-link
-              class="${AUTOMATION_NAMESPACE_PREFIX}--side-nav__link"
+              class="${cx(`${AUTOMATION_NAMESPACE_PREFIX}--side-nav__link`, {
+                [`${AUTOMATION_NAMESPACE_PREFIX}--side-nav__link--current`]:
+                  this.isActive,
+              })}"
               role="link"
+              ?active="${this.isActive}"
               href="${this.link?.href}"
               @click="${(e: Event) =>
                 this.handleSideNavLinkClick(e, this.link?.label)}"
